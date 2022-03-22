@@ -7,3 +7,8 @@
 // Oliver Infante - 1100292
 // Lervis Pinales - 1096323
 // Daniel Báez - 1073597
+
+using namespace std;
+
+void MainMenu();
+string CheckNumber(string);

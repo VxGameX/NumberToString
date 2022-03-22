@@ -14,6 +14,11 @@
 
 using namespace std;
 
+string unit[9] { "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE" };
+string teen[10] { "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN" };
+string ten[8] { "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY" };
+string other[4] { "HUNDRED", "THOUSAND", "MILLION", "BILLION" };
+
 int main()
 {
 	do
@@ -24,40 +29,64 @@ int main()
 
 void MainMenu()
 {
-    cout << "";
+	string number;
+    cout << "Number: ";
+	cin >> number;
+
+	cout << CheckNumber(number);
 }
 
 string CheckNumber(string number)
 {
-	for (int i = number.length(); i > 0; i--)
+	int numberLength = number.length();
+
+	string numberDigit, numberString = "";
+
+	for (int j = 0, i = numberLength; i > 0; i--)
 	{
-		if (i % 4 == 0)
+		numberDigit = number[j];
+		j++;
+
+		if (numberDigit == "0") continue;
+
+		switch (i)
 		{
-			switch (atoi(number[i]))
-			{
-				case 0:
-					return;
-				case 1:
-					return;
-				case 2:
-					return;
-				case 3:
-					return;
-				case 4:
-					return;
-				case 5:
-					return;
-				case 6:
-					return;
-				case 7:
-					return;
-				case 8:
-					return;
-				case 9:
-					return;
-				default:
-					break;
-			}
+			//case 0:
+			//	// Does nothing
+			//	break;
+			case 1:
+				numberString += unit[stoi(numberDigit) - 1];
+				break;
+			case 2:
+				if ((numberDigit == "1") && (number[j] == '0')) numberString += teen[stoi(numberDigit) - 1];
+				else if ((numberDigit == "1") && (number[j] != '0'))
+				{
+					numberString += teen[stoi(number[1]) - 1];
+					i--;
+				}
+				else
+				{
+					numberString += ten[stoi(numberDigit) - 2];
+				}
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			case 9:
+				break;
+			default:
+				break;
 		}
+		numberString += " ";
 	}
+	return numberString;
 }
