@@ -33,30 +33,33 @@ void MainMenu()
     cout << "Number: ";
 	cin >> number;
 
-	cout << CheckNumber(number);
+	cout << ConvertNumber(number);
 }
 
-string CheckNumber(string number)
+string ConvertNumber(string number)
 {
 	int numberLength = number.length();
 
 	string numberDigit, numberString = "";
 
-	if (number == "0") return "ZERO PESOS DOMINICANOS\n";
+	if (number == "0")
+		return "ZERO PESOS DOMINICANOS\n";
 
 	for (int j = 0, i = numberLength; i > 0; i--)
 	{
 		numberDigit = number[j];
 		j++;
 
-		if (numberDigit == "0") continue;
+		if (numberDigit == "0")
+			continue;
 
 		switch (i)
 		{
-			
+			// Unidades
 			case 1:
 				numberString += unit[stoi(numberDigit) - 1];
 				break;
+			// Decenas
 			case 2:
 				if ((numberDigit == "1") && (number[j] == '0'))
 				{
@@ -73,20 +76,55 @@ string CheckNumber(string number)
 					numberString += ten[stoi(numberDigit) - 2];
 				}
 				break;
+			// Centenas
 			case 3:
-
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += (" " + other[0]);
 				break;
+			// Unidad de mil
 			case 4:
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += (" " + other[1]);
 				break;
+			// Decena de mil
 			case 5:
+				if ((numberDigit == "1") && (number[j] == '0'))
+				{
+					numberString += teen[stoi(numberDigit) - 1];
+				}
+				else if ((numberDigit == "1") && (number[j] != '0'))
+				{
+					numberDigit = number[j];
+					numberString += teen[stoi(numberDigit)];
+					i--;
+				}
+				else
+				{
+					numberString += ten[stoi(numberDigit) - 2];
+					numberString += " " + unit[stoi(numberDigit) - 2];
+					i--;
+				}
+				numberString += " " + other[1];
 				break;
+			// Centena de mil
 			case 6:
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += " " + other[0];
 				break;
+			// Unidad de millón
 			case 7:
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += (" " + other[0]);
 				break;
+			// Decena de millón
 			case 8:
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += (" " + other[0]);
 				break;
+			// Centena de millón
 			case 9:
+				numberString += unit[stoi(numberDigit) - 1];
+				numberString += (" " + other[0]);
 				break;
 			default:
 				break;
@@ -94,4 +132,9 @@ string CheckNumber(string number)
 		numberString += " ";
 	}
 	return numberString += "PESOS DOMINICANOS\n";
+}
+
+string CheckNumber(int number)
+{
+
 }
