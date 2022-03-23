@@ -43,13 +43,11 @@ string ConvertNumber(string number)
 
 	string numberDigit, numberString = "";
 
-	if (number == "0")
-		return "CERO PESOS DOMINICANOS\n";
-
 	for (numberLength; numberLength > 0; numberLength--)
 	{
 		numberDigit = number[digitPosition];
 
+		// Cero
 		if (numberDigit == "0")
 		{
 			digitPosition++;
@@ -117,5 +115,5 @@ string ConvertNumber(string number)
 
 		digitPosition++;
 	}
-	return numberString += " PESOS DOMINICANOS CON 00/100\n";
+	return (numberString == "") ? "CERO PESOS DOMINICANOS CON 00/100\n" : numberString += " PESOS DOMINICANOS CON 00/100\n";
 }
