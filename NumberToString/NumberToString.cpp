@@ -42,7 +42,7 @@ string CheckNumber(string number)
 
 	string numberDigit, numberString = "";
 
-	if (number == "0") return "ZERO PESOS DOMINICANOS ";
+	if (number == "0") return "ZERO PESOS DOMINICANOS\n";
 
 	for (int j = 0, i = numberLength; i > 0; i--)
 	{
@@ -53,17 +53,18 @@ string CheckNumber(string number)
 
 		switch (i)
 		{
-			//case 0:
-			//	// Does nothing
-			//	break;
+			
 			case 1:
 				numberString += unit[stoi(numberDigit) - 1];
 				break;
 			case 2:
-				if ((numberDigit == "1") && (number[j] == '0')) numberString += teen[stoi(numberDigit) - 1];
+				if ((numberDigit == "1") && (number[j] == '0'))
+				{
+					numberString += teen[stoi(numberDigit) - 1];
+				}
 				else if ((numberDigit == "1") && (number[j] != '0'))
 				{
-					numberDigit = number[j];
+					numberDigit = number[j]; 
 					numberString += teen[stoi(numberDigit)];
 					i--;
 				}
@@ -73,6 +74,7 @@ string CheckNumber(string number)
 				}
 				break;
 			case 3:
+
 				break;
 			case 4:
 				break;
@@ -91,5 +93,5 @@ string CheckNumber(string number)
 		}
 		numberString += " ";
 	}
-	return numberString += "PESOS DOMINICANOS ";
+	return numberString += "PESOS DOMINICANOS\n";
 }
