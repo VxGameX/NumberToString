@@ -11,5 +11,5 @@
 using namespace std;
 
 void MainMenu();
-string CheckNumber(string);
 string ConvertNumber(string);
+string CheckNumber(string, int, int);
